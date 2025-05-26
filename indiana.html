@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfólio Indiana Jones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, #fffbe9 0%, #c0a46b 100%);
+      color: #3d2c0b;
+      min-height: 100vh;
+      transition: background 0.6s;
+    }
+    header {
+      background: linear-gradient(90deg, #5c4327, #9e7d45);
+      color: #ffecb0;
+      padding: 40px 0 24px 0;
+      text-align: center;
+      box-shadow: 0 2px 18px #bca16d50;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      transition: background 0.8s;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.7rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px #bca16d80;
+    }
+    nav {
+      margin-top: 18px;
+    }
+    nav a {
+      color: #ffecb0;
+      text-decoration: none;
+      margin: 0 16px;
+      font-size: 1.07rem;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 7px;
+      transition: background 0.16s, color 0.2s;
+    }
+    nav a:hover, nav a.active {
+      background: #fffbe9;
+      color: #7c5b1e;
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.35rem;
+      color: #ffd34b;
+      transition: color 0.2s;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 52px 18px 34px 18px;
+      animation: fadeIn 1.2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    section {
+      margin-bottom: 54px;
+      background: #fffbe9d2;
+      border-radius: 22px;
+      box-shadow: 0 2px 18px #9e7d4530;
+      padding: 44px 38px 32px 38px;
+      position: relative;
+      transition: box-shadow 0.2s, background 0.6s;
+      overflow: hidden;
+    }
+    section:hover {
+      box-shadow: 0 6px 30px #a57c2e30;
+    }
+    .profile-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 46px;
+      margin-bottom: 15px;
+    }
+    .profile-pic {
+      flex: 0 0 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 32px #d2ae6422;
+      border: 8px solid #f5dfb5;
+      background: #d6b97c;
+      position: relative;
+    }
+    .profile-pic img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .profile-info {
+      flex: 1 1 350px;
+    }
+    .profile-info h2 {
+      margin: 0 0 8px 0;
+      font-size: 2.2rem;
+      color: #8f6211;
+      font-weight: 700;
+    }
+    .profile-info h3 {
+      margin: 0 0 13px 0;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #a3823d;
+      letter-spacing: 0.9px;
+    }
+    .profile-info p {
+      color: #5e4a21;
+      font-size: 1.14rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      color: #8f6211;
+      margin-bottom: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .adventures, .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-top: 16px;
+    }
+    .adventure-card {
+      flex: 1 1 250px;
+      background: #fff7e1;
+      border-radius: 13px;
+      padding: 22px 18px 14px 18px;
+      box-shadow: 0 1px 12px #e2c77c32;
+      margin-bottom: 10px;
+      min-width: 220px;
+      transition: transform 0.17s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+      border-left: 8px solid #ffe3a3;
+      cursor: pointer;
+    }
+    .adventure-card:hover {
+      transform: translateY(-4px) scale(1.035);
+      box-shadow: 0 7px 26px #e2c77c50;
+      background: #f4e3b6;
+    }
+    .adventure-card h4 {
+      margin: 0 0 5px 0;
+      color: #c28116;
+      font-size: 1.13rem;
+      font-weight: 700;
+    }
+    .adventure-card small {
+      color: #ad9e7d;
+      font-size: 0.97rem;
+      font-weight: 700;
+    }
+    .adventure-card p {
+      font-size: 1.05rem;
+      margin: 8px 0 0 0;
+      color: #5e4a21;
+      line-height: 1.5;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .skill-badge {
+      background: linear-gradient(90deg, #ffe3a3, #e0c57f);
+      color: #8f6211;
+      padding: 11px 22px;
+      border-radius: 24px;
+      font-size: 1.01rem;
+      box-shadow: 0 1px 4px #d2ae6422;
+      margin-bottom: 7px;
+      font-weight: 600;
+      letter-spacing: 0.33px;
+      transition: background 0.18s, color 0.16s;
+      cursor: pointer;
+      border: 2px solid #ffe3a3;
+    }
+    .skill-badge:hover {
+      background: linear-gradient(90deg, #fffbe9, #ffe3a3);
+      color: #c28116;
+      border-color: #c28116;
+    }
+    .gallery {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      justify-content: center;
+    }
+    .gallery img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 11px;
+      border: 3px solid #f5dfb5;
+      box-shadow: 0 2px 12px #c9a55d38;
+      transition: box-shadow 0.19s, transform 0.15s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      box-shadow: 0 5px 28px #d2ae6450;
+      transform: scale(1.05);
+    }
+    .contact {
+      margin-top: 26px;
+      background: #ffe9b2;
+      border-radius: 11px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 1px 12px #e4cfa350;
+      font-size: 1.08rem;
+    }
+    .contact a {
+      color: #8f6211;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+    .contact a:hover {
+      color: #c28116;
+    }
+    .tooltip {
+      position: absolute;
+      background: #ffe3a3;
+      color: #8f6211;
+      padding: 9px 15px;
+      border-radius: 12px;
+      font-size: 0.97rem;
+      font-weight: 600;
+      box-shadow: 0 2px 12px #bca16d60;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.18s;
+      white-space: pre-line;
+    }
+    /* Dark mode */
+    body.dark {
+      background: linear-gradient(120deg, #2d2415 0%, #7e6f4e 100%);
+      color: #fff7e1;
+    }
+    body.dark header {
+      background: linear-gradient(90deg, #2d2415, #7e6f4e);
+      color: #ffe3a3;
+    }
+    body.dark section {
+      background: #3e321c;
+      box-shadow: 0 2px 18px #00000060;
+    }
+    body.dark nav a {
+      color: #ffe3a3;
+    }
+    body.dark nav a:hover, body.dark nav a.active {
+      background: #7e6f4e;
+      color: #ffd34b;
+    }
+    body.dark .adventure-card {
+      background: #473b24;
+      border-left: 8px solid #ffd34b;
+    }
+    body.dark .adventure-card:hover {
+      background: #6d5935;
+    }
+    body.dark .skill-badge {
+      background: linear-gradient(90deg, #7e6f4e, #473b24);
+      color: #ffd34b;
+      border-color: #ffd34b;
+    }
+    body.dark .skill-badge:hover {
+      background: linear-gradient(90deg, #473b24, #7e6f4e);
+      color: #fffbe9;
+      border-color: #ffd34b;
+    }
+    body.dark .gallery img {
+      border: 3px solid #ffd34b;
+      box-shadow: 0 2px 14px #00000070;
+    }
+    body.dark .contact {
+      background: #473b24;
+      color: #ffd34b;
+      box-shadow: 0 1px 12px #00000090;
+    }
+    body.dark .tooltip {
+      background: #7e6f4e;
+      color: #ffd34b;
+      box-shadow: 0 2px 14px #00000080;
+    }
+    @media (max-width: 800px) {
+      .profile-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      section {
+        padding: 18px 2vw 18px 2vw;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1vw;
+      }
+      section {
+        padding: 7px 3px 11px 3px;
+      }
+      .profile-pic img {
+        width: 120px;
+        height: 120px;
+      }
+      .gallery img {
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button class="theme-toggle" id="themeToggle" title="Alternar tema" aria-label="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+    <h1>Indiana Jones</h1>
+    <nav>
+      <a href="#sobre" class="active">Sobre</a>
+      <a href="#aventuras">Aventuras</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section id="sobre">
+      <div class="profile-grid">
+        <div class="profile-pic">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Indiana_Jones_%28Harrison_Ford%29.png" alt="Indiana Jones">
+        </div>
+        <div class="profile-info">
+          <h2>Dr. Henry "Indiana" Jones Jr.</h2>
+          <h3>Arqueólogo & Aventureiro</h3>
+          <p>
+            Apaixonado por história, mistérios e civilizações antigas, Indiana Jones é mundialmente conhecido por suas descobertas extraordinárias e sua coragem. Sempre acompanhado de seu chapéu, chicote e uma boa dose de senso de humor, busca proteger artefatos históricos e inspirar novas gerações com seu espírito destemido.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="aventuras">
+      <div class="section-title"><i class="fa-solid fa-hat-cowboy"></i> Principais Aventuras</div>
+      <div class="adventures">
+        <div class="adventure-card" data-tooltip="A busca pela Arca da Aliança enfrentando nazistas e armadilhas mortais.">
+          <h4>Os Caçadores da Arca Perdida <small>(1981)</small></h4>
+          <p>Em uma busca épica, enfrentou nazistas para encontrar a lendária Arca da Aliança antes que fosse usada como arma de guerra.</p>
+        </div>
+        <div class="adventure-card" data-tooltip="Missão na Índia: resgatar crianças e recuperar as pedras Sankara.">
+          <h4>O Templo da Perdição <small>(1984)</small></h4>
+          <p>Resgatou crianças escravizadas e recuperou as pedras mágicas Sankara em uma missão repleta de perigos na Índia.</p>
+        </div>
+        <div class="adventure-card" data-tooltip="Indiana e seu pai na corrida pelo Santo Graal.">
+          <h4>A Última Cruzada <small>(1989)</small></h4>
+          <p>Ao lado de seu pai, buscou o Santo Graal e enfrentou enigmas mortais por toda a Europa.</p>
+        </div>
+        <div class="adventure-card" data-tooltip="Exploração na Amazônia e mistérios sobrenaturais.">
+          <h4>O Reino da Caveira de Cristal <small>(2008)</small></h4>
+          <p>Explorou as Américas em busca da misteriosa caveira de cristal, enfrentando desafios sobrenaturais.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <div class="section-title"><i class="fa-solid fa-book"></i> Habilidades & Competências</div>
+      <div class="skills-list">
+        <span class="skill-badge" data-tooltip="Especialista em escavações, técnicas de preservação e análises de artefatos.">Arqueologia de campo</span>
+        <span class="skill-badge" data-tooltip="Leitura e tradução de hieróglifos, sânscrito, latim e outros idiomas antigos.">Línguas antigas</span>
+        <span class="skill-badge" data-tooltip="Mestre no uso preciso do chicote e técnicas de defesa pessoal.">Chicote & Combate</span>
+        <span class="skill-badge" data-tooltip="Capacidade de decifrar enigmas, resolver puzzles e superar armadilhas.">Resolução de enigmas</span>
+        <span class="skill-badge" data-tooltip="Conhecimento amplo em culturas e mitologia pelo mundo.">História de civilizações</span>
+        <span class="skill-badge" data-tooltip="Professor universitário renomado, didática reconhecida mundialmente.">Ensino universitário</span>
+        <span class="skill-badge" data-tooltip="Liderança em expedições e decisões em situações de risco.">Coragem & liderança</span>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="section-title"><i class="fa-solid fa-camera-retro"></i> Galeria de Aventuras</div>
+      <div class="gallery">
+        <img src="https://static.wikia.nocookie.net/indianajones/images/c/c7/Raiders_of_the_Lost_Ark_-_Indiana_Jones_in_Boulder_Scene.png" alt="Indiana Jones Boulder" data-tooltip="Fuga da famosa pedra gigante.">
+        <img src="https://static.wikia.nocookie.net/indianajones/images/8/8f/Temple_of_Doom_-_Bridge_Scene.png" alt="Indiana Jones Bridge" data-tooltip="Atravessando a ponte no Templo da Perdição.">
+        <img src="https://static.wikia.nocookie.net/indianajones/images/7/7a/Last_Crusade_-_Grail_Knight.png" alt="Indiana Jones Grail Knight" data-tooltip="Diante do Cavaleiro do Graal.">
+        <img src="https://static.wikia.nocookie.net/indianajones/images/1/1e/Crystal_Skull_-_Jungle_Chase.png" alt="Indiana Jones Jungle" data-tooltip="Perseguição na selva amazônica.">
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="section-title"><i class="fa-solid fa-envelope"></i> Contato Profissional</div>
+      <div class="contact">
+        <p>
+          <b><i class="fa-solid fa-envelope"></i> E-mail:</b> <a href="mailto:indiana.jones@universidade.edu">indiana.jones@universidade.edu</a><br>
+          <b><i class="fa-solid fa-university"></i> Universidade Marshall</b> — Departamento de Arqueologia<br>
+          <span style="color:#a57b21;font-size:0.99rem;">"A aventura está no sangue!"</span>
+        </p>
+      </div>
+    </section>
+  </main>
+  <div id="tooltip" class="tooltip"></div>
+  <script>
+    // Scroll suave e destaque no menu
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          document.querySelectorAll('nav a').forEach(l=>l.classList.remove('active'));
+          this.classList.add('active');
+          const target = document.querySelector(href);
+          const offset = window.innerWidth < 600 ? 20 : 50;
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - offset,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    // Troca de tema (claro/escuro)
+    const themeBtn = document.getElementById('themeToggle');
+    const icon = themeBtn.querySelector('i');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      if(document.body.classList.contains('dark')){
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
+
+    // Tooltip dinâmico para cards e badges
+    const tooltip = document.getElementById('tooltip');
+    function showTooltip(e, text) {
+      tooltip.style.opacity = '1';
+      tooltip.textContent = text;
+      let x = e.pageX + 16;
+      let y = e.pageY - 16;
+      if (window.innerWidth - x < 220) x = window.innerWidth - 220;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+    }
+    function hideTooltip() {
+      tooltip.style.opacity = '0';
+    }
+    document.querySelectorAll('[data-tooltip]').forEach(el => {
+      el.addEventListener('mousemove', e => showTooltip(e, el.getAttribute('data-tooltip')));
+      el.addEventListener('mouseleave', hideTooltip);
+      el.addEventListener('touchstart', function(e) {
+        showTooltip(e.touches[0], el.getAttribute('data-tooltip'));
+        setTimeout(hideTooltip, 2500);
+      });
+    });
+    // Destaque menu ao rolar
+    window.addEventListener('scroll', () => {
+      const sections = [...document.querySelectorAll("main > section")];
+      let scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+      let found = false;
+      for(let s of sections) {
+        if(scrollPos + 60 >= s.offsetTop) {
+          navLinks.forEach(l=>l.classList.remove('active'));
+          let id = s.getAttribute('id');
+          let link = document.querySelector(`nav a[href="#${id}"]`);
+          if(link) link.classList.add('active');
+          found = true;
+        }
+      }
+      if(!found) navLinks[0].classList.add('active');
+    });
+  </script>
+</body>
+</html>
