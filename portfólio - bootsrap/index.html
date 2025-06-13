@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Indiana Jones | Portfólio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #f3e7d1;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .indiana-header {
+      background: linear-gradient(rgba(50,30,10,.6),rgba(50,30,10,.7)), 
+        url('https://static.wikia.nocookie.net/indianajones/images/b/bd/Map_Raiders.png') center/cover no-repeat;
+      color: #FFD700;
+      min-height: 370px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-shadow: 3px 3px 7px #4d2e09;
+      border-bottom: 6px solid #c19a6b;
+      position: relative;
+      letter-spacing: 1px;
+    }
+    .indiana-header::after {
+      content: "";
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Indiana_Jones_logo.svg') bottom right no-repeat;
+      opacity: 0.18;
+      position: absolute;
+      height: 120px;
+      width: 320px;
+      bottom: 0;
+      right: 10px;
+      pointer-events: none;
+    }
+    .indy-title {
+      font-family: 'Pirata One', 'Roboto', serif;
+      font-size: 3.2rem;
+      letter-spacing: 3px;
+      color: #FFD700;
+      text-shadow: 4px 4px 12px #4d2e09, 1px 1px 0 #000;
+    }
+    .avatar {
+      width: 128px; height: 128px; border-radius: 50%;
+      object-fit: cover; border: 4px solid #c19a6b;
+      margin-bottom: 14px; box-shadow: 0px 6px 16px #5b3a0b99;
+      background: #fffbe9;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #5b3a0b 65%, #9d7e4c 100%);
+      font-family: 'Pirata One', 'Roboto', serif;
+      border-bottom: 2px solid #c19a6b;
+      box-shadow: 0 2px 8px #0002;
+    }
+    .navbar .nav-link, .navbar-brand {
+      color: #FFD700 !important;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      transition: color .2s;
+    }
+    .navbar .nav-link:hover, .navbar-brand:hover { color: #fffbe9 !important; }
+    section, footer { border-radius: 18px; }
+    h2 {
+      font-family: 'Pirata One', 'Roboto', serif;
+      color: #5b3a0b;
+      letter-spacing: 2px;
+    }
+    .indy-section {
+      background: #fffbe9;
+      box-shadow: 0 2px 12px #c19a6b77;
+      margin-bottom: 32px;
+      border: 2px solid #c19a6b;
+      padding: 2.5rem 1.5rem;
+    }
+    .aventura-card {
+      background: #f4e3c1;
+      border: 2px solid #a87d3e;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #c19a6b55;
+      position: relative;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .aventura-card:hover {
+      transform: translateY(-7px) scale(1.03) rotate(-1deg);
+      box-shadow: 0 6px 24px #7c5a23bb;
+      z-index: 2;
+    }
+    .aventura-card .card-title {
+      color: #7c5a23;
+      font-family: 'Pirata One', 'Roboto', serif;
+      font-size: 1.15rem;
+    }
+    .aventura-card .badge {
+      background: #b8860b;
+      color: #fff;
+      font-size: .95em;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .indy-btn {
+      background: #b8860b;
+      color: #fffbe9;
+      border: none;
+      border-radius: 7px;
+      font-size: 1em;
+      padding: 7px 20px;
+      letter-spacing: 1px;
+      transition: background .2s;
+      box-shadow: 0 2px 6px #a87d3e44;
+    }
+    .indy-btn:hover { background: #FFD700; color: #4d2e09; }
+    .aventura-filtros .btn {
+      font-family: 'Pirata One', serif;
+      margin-bottom: 6px;
+      background: #d7c18a;
+      color: #5b3a0b;
+      border: 1.5px solid #b8860b;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    .aventura-filtros .btn.active, .aventura-filtros .btn:hover {
+      background: #b8860b !important;
+      color: #fffbe9 !important;
+      border-color: #FFD700;
+    }
+    .carousel-inner img {
+      border-radius: 15px;
+      border: 3px solid #a87d3e;
+      box-shadow: 0 2px 12px #c19a6b99;
+      background: #fffbe9;
+      min-height: 220px;
+      object-fit: cover;
+    }
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #5b3a0b 60%, #9d7e4c 100%);
+      color: #FFD700;
+      font-family: 'Pirata One', serif;
+      font-size: 1.1em;
+      letter-spacing: 1px;
+      box-shadow: 0 -1px 8px #c19a6b99;
+      border-top: 3px solid #c19a6b;
+    }
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 30px; right: 32px;
+      z-index: 99;
+      border: none; outline: none;
+      background: #c19a6b;
+      color: #fffbe9;
+      cursor: pointer;
+      padding: 17px 18px 14px 18px;
+      border-radius: 50%;
+      font-size: 24px;
+      box-shadow: 0 2px 12px #5b3a0b88;
+      transition: background 0.2s, color 0.2s;
+    }
+    #backToTop:hover {
+      background: #FFD700;
+      color: #5b3a0b;
+    }
+    .indy-map {
+      background: url('https://static.wikia.nocookie.net/indianajones/images/b/bd/Map_Raiders.png') center/contain no-repeat;
+      opacity: 0.08;
+      position: absolute;
+      left: 0; right: 0;
+      top: 0; bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @media (max-width: 600px) {
+      .indy-title { font-size: 2.1rem; }
+      .indiana-header { min-height: 220px; }
+      .indy-section { padding: 1.3rem .6rem; }
+      .carousel-inner img { min-height: 140px; }
+    }
+    /* Info Section */
+    .indy-info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+    }
+    .indy-info-list li {
+      margin-bottom: .7rem;
+      font-size: 1.07em;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .indy-info-list svg, .indy-info-list span.emoji {
+      font-size: 1.35em;
+      vertical-align: middle;
+    }
+    .indy-info-list a {
+      color: #7c5a23;
+      text-decoration: underline dotted;
+      font-weight: 500;
+    }
+    .indy-info-list a:hover {
+      color: #b8860b;
+      text-decoration: underline wavy;
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="80">
+
+  <div class="indy-map"></div>
+  <!-- Header -->
+  <header class="indiana-header" data-aos="zoom-in">
+    <img src="https://static.wikia.nocookie.net/indianajones/images/9/99/Indiana_Jones_Character.jpg" alt="Indiana Jones" class="avatar" data-bs-toggle="tooltip" data-bs-title="Esse é o lendário Indiana Jones!">
+    <h1 class="indy-title">
+      <span style="vertical-align:middle;">
+        <svg width="34" height="34" fill="#c19a6b" style="margin-right:10px;vertical-align:middle;" viewBox="0 0 24 24"><path d="M21.54 3.91c-.38-.38-.99-.38-1.37 0l-5.17 5.17c-.5-.13-1.02-.19-1.54-.19-.52 0-1.03.06-1.52.18l-5.18-5.18c-.38-.38-.99-.38-1.37 0s-.38.99 0 1.37l5.18 5.18c-.12.5-.18 1.01-.18 1.53 0 .52.07 1.03.19 1.52l-5.18 5.18c-.38.38-.38.99 0 1.37.38.38.99.38 1.37 0l5.18-5.18c.5.13 1.02.2 1.54.2.52 0 1.03-.07 1.52-.18l5.18 5.18c.38.38.99.38 1.37 0 .38-.38.38-.99 0-1.37l-5.17-5.17c.13-.5.19-1.02.19-1.54 0-.52-.06-1.03-.18-1.52l5.17-5.17c.38-.38.38-.99 0-1.37z"></path></svg>
+        Indiana Jones
+      </span>
+    </h1>
+    <p style="font-size:1.2em; color:#fffbe9; text-shadow:1px 1px 8px #5b3a0b;">Arqueólogo · Aventureiro · Professor</p>
+  </header>
+
+  <!-- Navegação -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#"><svg width="24" height="24" fill="#FFD700" style="margin-right:2px;vertical-align:middle;" viewBox="0 0 24 24"><path d="M4.293 17.293A1 1 0 015 17h14a1 1 0 01.707 1.707l-7 7a1 1 0 01-1.414 0l-7-7z"></path></svg>Indy</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#bio">Biografia</a></li>
+          <li class="nav-item"><a class="nav-link" href="#aventuras">Aventuras</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#info">Informações</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Biografia -->
+  <section class="container indy-section my-5" id="bio">
+    <div class="row align-items-center">
+      <div class="col-md-6" data-aos="fade-right">
+        <h2><svg width="32" height="32" fill="#b8860b" style="margin-right:5px;vertical-align:middle;" viewBox="0 0 24 24"><path d="M12 2C8.13 2 4 5.13 4 9c0 4.25 4.7 7.93 7.22 9.76.5.4 1.06.4 1.56 0C15.3 16.93 20 13.25 20 9c0-3.87-4.13-7-8-7zm0 15c-2.33-1.8-6-4.85-6-8 0-2.76 3.13-5 6-5s6 2.24 6 5c0 3.15-3.67 6.2-6 8z"></path></svg>Biografia</h2>
+        <p>
+          Dr. Henry Walton "Indiana" Jones Jr. é um lendário arqueólogo e professor universitário, protagonista de aventuras épicas em busca de relíquias e segredos antigos. Famoso por seu chapéu, chicote e coragem, Indy viaja pelo mundo enfrentando perigos e desvendando mistérios da humanidade.
+        </p>
+        <ul>
+          <li><b>Especialidade:</b> Arqueologia de campo</li>
+          <li><b>Universidade:</b> Marshall College</li>
+          <li><b>Ícones:</b> <span title="Chapéu Fedora">👒</span> <span title="Chicote">🥢</span> <span title="Relíquias">🗿</span></li>
+        </ul>
+        <button class="indy-btn mt-2" type="button" data-bs-toggle="popover" data-bs-title="Curiosidade" data-bs-content="Indiana odeia cobras!">Curiosidade</button>
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <img src="https://static.wikia.nocookie.net/indianajones/images/1/1d/Indy_hat_and_whip.png" class="img-fluid rounded shadow" alt="Chapéu e chicote do Indiana Jones">
+      </div>
+    </div>
+  </section>
+
+  <!-- Aventuras Dinâmicas com Filtro -->
+  <section class="container indy-section my-5" id="aventuras" style="position:relative;">
+    <h2>
+      <svg width="30" height="30" style="vertical-align:middle;" fill="#b8860b" viewBox="0 0 24 24"><path d="M19.5 9.5c-1.12 0-2.08.62-2.5 1.5h-6c-.42-.88-1.38-1.5-2.5-1.5C6.12 9.5 5 10.62 5 12s1.12 2.5 2.5 2.5c1.12 0 2.08-.62 2.5-1.5h6c.42.88 1.38 1.5 2.5 1.5 1.38 0 2.5-1.12 2.5-2.5s-1.12-2.5-2.5-2.5z"></path></svg>
+      Aventuras
+    </h2>
+    <div class="aventura-filtros mb-3">
+      <button class="btn active" data-filter="all"><span>🌍</span> Todas</button>
+      <button class="btn" data-filter="arca">Arca Perdida</button>
+      <button class="btn" data-filter="templo">Templo da Perdição</button>
+      <button class="btn" data-filter="cruzada">Última Cruzada</button>
+      <button class="btn" data-filter="caveira">Caveira de Cristal</button>
+    </div>
+    <div class="row g-4" id="aventuras-lista">
+      <!-- Cards dinâmicos via JS -->
+    </div>
+  </section>
+
+  <!-- Galeria Dinâmica com Carrossel -->
+  <section class="container indy-section my-5" id="galeria">
+    <h2>
+      <svg width="32" height="32" fill="#b8860b" style="vertical-align:middle;margin-right:5px;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-1.64.49-3.16 1.32-4.41l11.09 11.09C15.16 19.51 13.64 20 12 20zm6.68-3.59L7.59 4.91C8.84 4.09 10.36 3.6 12 3.6c4.41 0 8 3.59 8 8 0 1.64-.49 3.16-1.32 4.41z"></path></svg>
+      Galeria
+    </h2>
+    <div id="carouselIndy" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner" id="carousel-imgs">
+        <!-- Slides dinâmicos via JS -->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndy" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndy" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Informações de contato -->
+  <section class="container indy-section my-5" id="info">
+    <h2>
+      <svg width="30" height="30" fill="#b8860b" style="vertical-align:middle;margin-right:5px;" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"></path></svg>
+      Informações de Contato
+    </h2>
+    <ul class="indy-info-list">
+      <li>
+        <span class="emoji">📧</span>
+        <strong>Email:</strong> <a href="mailto:indiana.jones@marshall.edu">indiana.jones@marshall.edu</a>
+      </li>
+      <li>
+        <span class="emoji">🏛️</span>
+        <strong>Universidade:</strong> Marshall College
+      </li>
+      <li>
+        <span class="emoji">📍</span>
+        <strong>Localização:</strong> Barnett College, Connecticut, EUA
+      </li>
+      <li>
+        <span class="emoji">🌐</span>
+        <strong>Wikipedia:</strong>
+        <a href="https://pt.wikipedia.org/wiki/Indiana_Jones" target="_blank" rel="noopener">Indiana Jones</a>
+      </li>
+      <li>
+        <span class="emoji">🐍</span>
+        <strong>Fobia:</strong> Cobras
+      </li>
+    </ul>
+  </section>
+
+  <footer class="py-3 mt-5 text-center">
+    &copy; 2025 Indiana Jones Portfólio. <span style="font-size:1em;">🗺️🗿</span>
+  </footer>
+
+  <button id="backToTop" title="Voltar ao topo">&#8679;</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Dados dinâmicos das aventuras
+    const aventuras = [
+      {
+        titulo: "Os Caçadores da Arca Perdida",
+        desc: "Em busca da lendária Arca da Aliança antes que caia em mãos erradas.",
+        img: "https://static.wikia.nocookie.net/indianajones/images/7/75/Ark_Raiders.jpg",
+        categoria: "arca",
+        curiosidade: "Primeiro filme da franquia, lançado em 1981."
+      },
+      {
+        titulo: "O Templo da Perdição",
+        desc: "Indy enfrenta cultos misteriosos e resgata crianças escravizadas na Índia.",
+        img: "https://static.wikia.nocookie.net/indianajones/images/9/9b/ToD_Temple.jpg",
+        categoria: "templo",
+        curiosidade: "O filme é, cronologicamente, anterior ao primeiro."
+      },
+      {
+        titulo: "A Última Cruzada",
+        desc: "Com seu pai, busca o Santo Graal enfrentando armadilhas e inimigos.",
+        img: "https://static.wikia.nocookie.net/indianajones/images/3/3c/Grail_Cup.jpg",
+        categoria: "cruzada",
+        curiosidade: "Sean Connery interpreta o pai de Indiana Jones."
+      },
+      {
+        titulo: "O Reino da Caveira de Cristal",
+        desc: "Aventura envolvendo artefatos misteriosos e conspirações soviéticas.",
+        img: "https://static.wikia.nocookie.net/indianajones/images/2/24/Crystal_skull.jpg",
+        categoria: "caveira",
+        curiosidade: "Quarto filme da franquia, lançado em 2008."
+      }
+    ];
+
+    function renderAventuras(filter = "all") {
+      const aventurasLista = document.getElementById("aventuras-lista");
+      aventurasLista.innerHTML = "";
+      aventuras
+        .filter(a => filter === "all" || a.categoria === filter)
+        .forEach((a, idx) => {
+          aventurasLista.innerHTML += `
+            <div class="col-md-3" data-aos="flip-left">
+              <div class="card aventura-card h-100 shadow adventure-card" data-curiosidade="${a.curiosidade}" style="cursor:pointer" tabindex="0">
+                <img src="${a.img}" class="card-img-top" alt="${a.titulo}">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    ${a.titulo}
+                    <span class="badge">${a.categoria.charAt(0).toUpperCase() + a.categoria.slice(1)}</span>
+                  </h5>
+                  <p class="card-text">${a.desc}</p>
+                  <button type="button" class="indy-btn btn-sm curiosidade-btn" data-idx="${idx}">Curiosidade</button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      if (window.AOS) AOS.refresh();
+    }
+    renderAventuras();
+
+    document.querySelectorAll('.aventura-filtros .btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.aventura-filtros .btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderAventuras(this.dataset.filter);
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('curiosidade-btn')) {
+        const idx = e.target.dataset.idx;
+        const aventura = aventuras[idx];
+        showModalCuriosidade(aventura.titulo, aventura.curiosidade);
+      }
+    });
+
+    function showModalCuriosidade(titulo, curiosidade) {
+      let modalHtml = `
+        <div class="modal fade" id="curiosidadeModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content" style="background:#fffbe9;border:2px solid #c19a6b;">
+              <div class="modal-header">
+                <h5 class="modal-title" style="font-family:'Pirata One',serif;">${titulo}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <p>${curiosidade}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.insertAdjacentHTML('beforeend', modalHtml);
+      const modal = new bootstrap.Modal(document.getElementById('curiosidadeModal'));
+      modal.show();
+      document.getElementById('curiosidadeModal').addEventListener('hidden.bs.modal', function () {
+        document.getElementById('curiosidadeModal').remove();
+      });
+    }
+
+    // Galeria de imagens temáticas do Indiana Jones
+    const galeriaImgs = [
+      "https://static.wikia.nocookie.net/indianajones/images/3/3e/Indy_Raiders.jpg", // Indy com chapéu clássico
+      "https://static.wikia.nocookie.net/indianajones/images/1/19/Indy_Whip_Raiders.jpg", // Indy com chicote
+      "https://static.wikia.nocookie.net/indianajones/images/1/1d/Indy_hat_and_whip.png", // Chapéu e chicote juntos
+      "https://static.wikia.nocookie.net/indianajones/images/3/3c/Grail_Cup.jpg" // Cálice Sagrado
+    ];
+    const carouselImgs = document.getElementById("carousel-imgs");
+    galeriaImgs.forEach((img, idx) => {
+      carouselImgs.innerHTML += `
+        <div class="carousel-item${idx === 0 ? " active" : ""}">
+          <img src="${img}" class="d-block w-100 rounded" alt="Galeria Indiana Jones ${idx+1}">
+        </div>
+      `;
+    });
+
+    // Voltar ao topo
+    const backToTop = document.getElementById('backToTop');
+    window.onscroll = function() {
+      if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        backToTop.style.display = "block";
+      } else {
+        backToTop.style.display = "none";
+      }
+    };
+    backToTop.onclick = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // AOS e tooltips/popovers
+    AOS.init({ duration: 1000, once: true });
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new bootstrap.Popover(el));
+  </script>
+</body>
+</html>
